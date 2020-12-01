@@ -7,6 +7,7 @@ import { FormHandles } from '@unform/core';
 import { Form } from '@unform/web';
 
 import * as Yup from 'yup';
+import { Link } from 'react-router-dom';
 import logoImg from '../../assets/logo.svg';
 
 import Input from '../../components/Input';
@@ -14,7 +15,7 @@ import Button from '../../components/Button';
 
 import getValidationErrors from '../../utils/getValidationErrors';
 
-import { Container, Background, Content } from './styles';
+import { Container, Background, AnimationContainer, Content } from './styles';
 
 const SignUp: React.FC = () => {
   const formRef = useRef<FormHandles>(null);
@@ -44,33 +45,35 @@ const SignUp: React.FC = () => {
       <Container>
         <Background />
         <Content>
-          <img src={logoImg} alt="Go Barber" />
+          <AnimationContainer>
+            <img src={logoImg} alt="Go Barber" />
 
-          <Form ref={formRef} onSubmit={handleSubmit}>
-            <h1>Faça seu cadastro</h1>
+            <Form ref={formRef} onSubmit={handleSubmit}>
+              <h1>Faça seu cadastro</h1>
 
-            <Input icon={FiUser} name="name" type="text" placeholder="Nome" />
+              <Input icon={FiUser} name="name" type="text" placeholder="Nome" />
 
-            <Input
-              icon={FiMail}
-              name="email"
-              type="text"
-              placeholder="E-mail"
-            />
+              <Input
+                icon={FiMail}
+                name="email"
+                type="text"
+                placeholder="E-mail"
+              />
 
-            <Input
-              icon={FiLock}
-              name="password"
-              type="password"
-              placeholder="Senha"
-            />
+              <Input
+                icon={FiLock}
+                name="password"
+                type="password"
+                placeholder="Senha"
+              />
 
-            <Button type="submit"> Cadastrar</Button>
-          </Form>
+              <Button type="submit"> Cadastrar</Button>
+            </Form>
 
-          <a href="newaccount">
-            <FiArrowLeft size={16} /> Voltar para logon
-          </a>
+            <Link to="/">
+              <FiArrowLeft size={16} /> Voltar para logon
+            </Link>
+          </AnimationContainer>
         </Content>
       </Container>
     </>
