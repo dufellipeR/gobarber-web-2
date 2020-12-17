@@ -1,21 +1,36 @@
 import React, { useState, useEffect, FormEvent } from 'react';
-import { FiChevronRight, FiChevronLeft } from 'react-icons/fi';
+import { FiChevronRight, FiChevronLeft, FiPower } from 'react-icons/fi';
 import { Link } from 'react-router-dom';
 import api from '../../services/api';
 
-import { Title } from './styles';
+import { Container, Header, HeaderContent, Profile } from './styles';
+
+import logoImg from '../../assets/logo.svg';
+import { useAuth } from '../../hooks/auth';
 
 const Dashboard: React.FC = () => {
-  // CODE
+  const { signOut, user } = useAuth();
 
   return (
     <>
-      <Title>
-        <FiChevronLeft size={20} />
-        Minimalist Template Typescript React
-        <FiChevronRight size={20} />
-      </Title>
+      <Container>
+        <Header>
+          <HeaderContent>
+            <img src={logoImg} alt="GoBarber" />
 
+            <Profile>
+              <img src={user.avatar_url} alt={user.name} />
+              <div>
+                <span>Bem-Vindo,</span>
+                <strong>{user.name}</strong>
+              </div>
+            </Profile>
+            <button type="button" onClick={signOut}>
+              <FiPower />
+            </button>
+          </HeaderContent>
+        </Header>
+      </Container>
     </>
   );
 };
